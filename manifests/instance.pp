@@ -308,7 +308,10 @@ define elasticsearch::instance(
 
     validate_bool($ssl)
     if $ssl {
-      validate_absolute_path($ca_certificate, $certificate, $private_key)
+      if $ca_cert {
+        validate_absolute_path($ca_cert)
+      }
+      validate_absolute_path($certificate, $private_key)
       validate_string($keystore_password)
 
       if ($keystore_path == undef) {
