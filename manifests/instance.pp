@@ -308,7 +308,7 @@ define elasticsearch::instance(
 
     validate_bool($ssl)
     if $ssl {
-      if $ca_cert {
+      if defined($ca_cert) {
         validate_absolute_path($ca_cert)
       }
       validate_absolute_path($certificate, $private_key)
